@@ -1,28 +1,25 @@
 import React from 'react';
-import { Header } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Provider as TodoProvider } from './src/context/todo.context';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import IndexScreen from './src/screens/IndexScreen';
-import { Text } from 'react-native';
+import EditFormScreen from './src/screens/EditFormScreen';
+import CreateFormScreen from './src/screens/CreateFormScreen';
 
 const navigator = createStackNavigator(
 	{
-		Index: IndexScreen
+		Index: IndexScreen,
+		Create: CreateFormScreen,
+		Edit: EditFormScreen
 	},
 	{
 		initialRouteName: 'Index',
 		defaultNavigationOptions: {
 			headerTitleAlign: 'center',
-			header: () => (
-				<Header
-					leftComponent={{ color: '#fff' }}
-					centerComponent={{ text: 'Todos', style: { color: '#fff', fontSize: 20 } }}
-					rightComponent={{ color: '#fff' }}
-				/>
-			)
+			headerTitle: 'ToDo App'
 		}
 	}
 );
@@ -32,10 +29,9 @@ const App = createAppContainer(navigator);
 export default () => {
 	return (
 		<TodoProvider>
+			<IconRegistry icons={EvaIconsPack} />
 			<ApplicationProvider {...eva} theme={{ ...eva.light }}>
-				{/* <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
 				<App />
-				{/* </Layout> */}
 			</ApplicationProvider>
 		</TodoProvider>
 	);

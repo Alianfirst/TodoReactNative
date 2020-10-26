@@ -1,13 +1,20 @@
 import React from 'react';
-import { StyleSheet, Chec } from 'react-native';
-import { Icon, Layout, Select, SelectItem } from '@ui-kitten/components';
+import { StyleSheet } from 'react-native';
+import { Select, SelectItem } from '@ui-kitten/components';
+import { FILTER_KEYS } from '../constants';
 
 const TodoFilters = ({ ...mediumSelectState }) => {
+	const { selectedIndex } = mediumSelectState;
+	const renderOption = (title) => <SelectItem title={title} key={title} />;
 	return (
-		<Select style={styles.select} size="medium" placeholder="Medium" {...mediumSelectState}>
-			<SelectItem title="Option 1" />
-			<SelectItem title="Option 2" />
-			<SelectItem title="Option 3" />
+		<Select
+			style={styles.select}
+			size="medium"
+			placeholder="Choose the type of ToDo"
+			{...mediumSelectState}
+			value={FILTER_KEYS[selectedIndex.row]}
+		>
+			{FILTER_KEYS.map(renderOption)}
 		</Select>
 	);
 };

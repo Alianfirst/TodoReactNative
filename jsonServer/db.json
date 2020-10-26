@@ -1,0 +1,6 @@
+{
+	"todos": [
+		{ "id": 1, "task": "Wash the car", "completed": false },
+		{ "id": 2, "task": "Wash the cat", "completed": true }
+	]
+}
